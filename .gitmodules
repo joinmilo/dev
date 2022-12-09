@@ -1,0 +1,6 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/wooportal/server-next
+[submodule "specs"]
+	path = specs
+	url = https://github.com/wooportal/specs

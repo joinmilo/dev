@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+
+  server:
+    container_name: wooportal.server
+    image: maven:3-openjdk-17-slim
+    command: mvn clean spring-boot:run -DexcludeDevtools=false
+    networks: [default]
+    ports: [8021:8080]
+    stop_signal: SIGKILL
+    working_dir: /src/wooportal.server
+    volumes:
+      - ./server:/src/wooportal.server
+      - ./server/.m2:/root/.m2
+      - ./server/.storage:/var/lib/wooportal/storage
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
+      - WOOPORTAL_DB_HOST=server-db
+      - WOOPORTAL_DB_NAME=wooportal
+      - WOOPORTAL_DB_PASS=wooportal
+      - WOOPORTAL_DB_PORT=5432
+      - WOOPORTAL_DB_USER=wooportal
+      - WOOPORTAL_HOST=localhost:3000
+      - WOOPORTAL_MAIL_FROM=info@codeschluss.de
+      - WOOPORTAL_MAIL_RCPT=error@codeschluss.de
+      - WOOPORTAL_MAIL_HOST=mail
+      - WOOPORTAL_MAIL_PORT=1025
+      - WOOPORTAL_MAIL_USER=
+      - WOOPORTAL_MAIL_PASS=
+      - WOOPORTAL_PORTAL_NAME=Jugendwerkstatt
+      - WOOPORTAL_PUSH_SECRET=credentials/firebase-credentials.json
+      - WOOPORTAL_STORAGE_LOCATION=/var/lib/wooportal/storage
+      
+  server-db:
+    container_name: wooportal.db
+    image: library/postgres:14-alpine
+    networks: [default]
+    ports: [8022:5432]
+    stop_signal: SIGKILL
+    restart: unless-stopped
+    volumes:
+      - wooportal-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=wooportal
+      - POSTGRES_PASSWORD=wooportal
+
+  mail:
+    container_name: wooportal.mail
+    image: maildev/maildev
+    networks: [default]
+    ports:
+      - "8024:1080"
+      - "8025:1025"
+    stop_signal: SIGKILL
+       
+volumes:
+  wooportal-db:
+    driver: local
