@@ -4,3 +4,6 @@
 [submodule "specs"]
 	path = specs
 	url = https://github.com/wooportal/specs
+[submodule "client"]
+	path = client
+	url = https://github.com/wooportal/client-next
