@@ -32,11 +32,11 @@ cd wooportal.dev
 cp .env.example .env
 ```
 
-5. Ask for WOOPORTAL_LOCATION_KEY or create your own Bing Maps Key (see [Bing Maps Integration](https://www.bingmapsportal.com/))
+5. In the .env file you will see the variable `WOOPORTAL_LOCATION_KEY`. Ask for `WOOPORTAL_LOCATION_KEY` or create your own Bing Maps Key (see [Bing Maps Integration](https://www.bingmapsportal.com/))
 
 6. Ask for firebase-credentials.json or create your own Firebase credential file (see [Firebase Docs](https://firebase.google.com/docs/cloud-messaging/android/client))
 
-7. Copy firebase-credentials.json to server:
+7. Copy `firebase-credentials.json` to server:
 
 ```
 cp  /path/to/your/firebase-credentials.json server/src/main/resources/credentials/firebase-credentials.json
@@ -52,7 +52,7 @@ mkdir server/.storage
 cp -a media/. server/.storage
 ```
 
-8. In order to have a local db running, ask for SQL dump and place it into /db 
+8. In order to have a local db running, ask for SQL dump and place it into `/db` 
 
 10. Build the stack:
 
