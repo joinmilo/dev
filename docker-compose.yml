@@ -38,7 +38,7 @@ services:
       - WOOPORTAL_MAIL_USER=
       - WOOPORTAL_MAIL_PASS=
       - WOOPORTAL_PORTAL_NAME=Wooportal
-      - WOOPORTAL_PUSH_SECRET=/data/credentials/firebase-credentials.json
+      - WOOPORTAL_PUSH_SECRET=file:/data/credentials/firebase-credentials.json
       - WOOPORTAL_STORAGE_LOCATION=/data/media
       
   server-db:

@@ -52,32 +52,46 @@ mkdir server/.storage
 cp -a media/. server/.storage
 ```
 
-8. Run the application:
+8. In order to have a local db running, ask for SQL dump and place it into /db 
+
+10. Build the stack:
+
+```
+docker-compose build --no-cache
+```
+
+11. Run the application:
 
 ```
 docker-compose up
+```
+
+In case of server development you should run the server within the IDE and not within docker compose. In that case you can use the scale flag, e.g.:
+
+```
+docker-compose up --scale server=0
 ```
 
 ## Tools and URLs
 
 After building and running the application following URLs are exposed:
 
-- Client: http://localhost:8020
-- Server: http://localhost:8021
-- Database: http://localhost:8022
-- Mail: http://localhost:8024
+- Client: http://localhost:8010
+- Server: http://localhost:8011
+- Database: http://localhost:8012
+- Mail: http://localhost:8014
 
 ### GraphQL Playground
 
 For testing the API you can reach the playground here:
-http://localhost:8021/gui
+http://localhost:8011/gui
 
 ### Media content
 
 In order to retrieve any media content there are the following endpoints to retrieve them:
 
-- http://localhost:8021/api/media/{id}: {id} should be replaced by the media id. This endpoint retrieves the item without downloading it immediately
-- http://localhost:8021/api/media/download/{id}: {id} should be replaced by the media id. This endpoint retrieves the data and has header set to download it automatically.
+- http://localhost:8011/api/media/{id}: {id} should be replaced by the media id. This endpoint retrieves the item without downloading it immediately
+- http://localhost:8011/api/media/download/{id}: {id} should be replaced by the media id. This endpoint retrieves the data and has header set to download it automatically.
 
 ## Specification and data model
 
