@@ -2,25 +2,34 @@ version: "3"
 
 services:
 
+  client:
+    container_name: wooportal.client
+    build:
+      context: ./client
+      dockerfile: Dockerfile_dev
+    networks: [default]
+    ports: [8010:4200]
+    stop_signal: SIGKILL
+    volumes:
+      - ./client/:/app
+      - /app/node_modules
+
   server:
     container_name: wooportal.server
-    image: maven:3-openjdk-17-slim
-    command: mvn clean spring-boot:run -DexcludeDevtools=false
+    build: https://github.com/wooportal/server-next.git#dev
     networks: [default]
-    ports: [8021:8080]
+    ports: [8011:80]
     stop_signal: SIGKILL
-    working_dir: /src/wooportal.server
     volumes:
-      - ./server:/src/wooportal.server
-      - ./server/.m2:/root/.m2
-      - ./server/.storage:/var/lib/wooportal/storage
+      - ./server/.storage:/data/media
+      - ./server/src/main/resources/credentials:/data/credentials
     environment:
       - SPRING_PROFILES_ACTIVE=development
       - WOOPORTAL_DB_HOST=server-db
       - WOOPORTAL_DB_NAME=wooportal
       - WOOPORTAL_DB_PASS=wooportal
-      - WOOPORTAL_DB_PORT=5432
-      - WOOPORTAL_DB_USER=wooportal
+      - WOOPORTAL_DB_PORT=3306
+      - WOOPORTAL_DB_USER=root
       - WOOPORTAL_HOST=localhost:3000
       - WOOPORTAL_MAIL_FROM=info@codeschluss.de
       - WOOPORTAL_MAIL_RCPT=error@codeschluss.de
@@ -28,30 +37,31 @@ services:
       - WOOPORTAL_MAIL_PORT=1025
       - WOOPORTAL_MAIL_USER=
       - WOOPORTAL_MAIL_PASS=
-      - WOOPORTAL_PORTAL_NAME=Jugendwerkstatt
-      - WOOPORTAL_PUSH_SECRET=credentials/firebase-credentials.json
-      - WOOPORTAL_STORAGE_LOCATION=/var/lib/wooportal/storage
+      - WOOPORTAL_PORTAL_NAME=Wooportal
+      - WOOPORTAL_PUSH_SECRET=/data/credentials/firebase-credentials.json
+      - WOOPORTAL_STORAGE_LOCATION=/data/media
       
   server-db:
     container_name: wooportal.db
-    image: library/postgres:14-alpine
+    image: mysql:5
     networks: [default]
-    ports: [8022:5432]
+    ports: [8012:3306]
     stop_signal: SIGKILL
     restart: unless-stopped
     volumes:
       - wooportal-db:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_USER=wooportal
-      - POSTGRES_PASSWORD=wooportal
+      - MYSQL_ROOT_PASSWORD=wooportal
+      - MYSQL_DATABASE=wooportal
 
   mail:
     container_name: wooportal.mail
     image: maildev/maildev
     networks: [default]
     ports:
-      - "8024:1080"
-      - "8025:1025"
+      - "8013:1080"
+      - "8014:1025"
     stop_signal: SIGKILL
        
 volumes:
