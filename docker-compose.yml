@@ -12,7 +12,6 @@ services:
     stop_signal: SIGKILL
     volumes:
       - ./client/:/app
-      - /app/node_modules
 
   server:
     container_name: wooportal.server

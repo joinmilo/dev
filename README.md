@@ -57,19 +57,19 @@ cp -a media/. server/.storage
 10. Build the stack:
 
 ```
-docker-compose build --no-cache
+docker compose build --no-cache
 ```
 
 11. Run the application:
 
 ```
-docker-compose up
+docker compose up
 ```
 
 In case of server development you should run the server within the IDE and not within docker compose. In that case you can use the scale flag, e.g.:
 
 ```
-docker-compose up --scale server=0
+docker compose up --scale server=0
 ```
 
 ## Tools and URLs
@@ -112,5 +112,5 @@ git submodule update --remote
 During the development there might be changes in existing changelog files. Therefore the whole database need to be purged. To setup a clean database you have to purge the volume before starting the docker-comppose:
 
 ```
-docker-compose down -v
+docker compose down -v
 ```
