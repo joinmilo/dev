@@ -114,3 +114,12 @@ During the development there might be changes in existing changelog files. There
 ```
 docker compose down -v
 ```
+
+## Migration Plan
+
+# Post deployment
+- Add favicon
+- Add color palette
+- Add logo image
+- Add Landing page
+- Add Apps entries
