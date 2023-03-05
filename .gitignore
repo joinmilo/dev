@@ -5,6 +5,9 @@
 # Only exists if Bazel was run
 /bazel-out
 
+# env
+/.env
+
 # dependencies
 /node_modules
 /package-lock.json
