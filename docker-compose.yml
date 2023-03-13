@@ -15,10 +15,11 @@ services:
 
   server:
     container_name: wooportal.server
-    build: https://github.com/wooportal/server-next.git#dev
+    build:
+      context: ./server
     networks: [default]
     ports: [8011:80]
-    stop_signal: SIGKILL
+    restart: always
     volumes:
       - ./server/.storage:/data/media
       - ./server/src/main/resources/credentials:/data/credentials
