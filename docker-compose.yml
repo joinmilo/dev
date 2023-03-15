@@ -49,7 +49,7 @@ services:
     stop_signal: SIGKILL
     restart: unless-stopped
     volumes:
-      - wooportal-db:/var/lib/postgresql/data
+      - wooportal-db:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=wooportal
@@ -63,7 +63,7 @@ services:
       - "8013:1080"
       - "8014:1025"
     stop_signal: SIGKILL
-       
+
 volumes:
   wooportal-db:
     driver: local
