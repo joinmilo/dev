@@ -34,15 +34,17 @@ cp .env.example .env
 
 5. In the .env file you will see the variable `WOOPORTAL_LOCATION_KEY`. Ask for `WOOPORTAL_LOCATION_KEY` or create your own Bing Maps Key (see [Bing Maps Integration](https://www.bingmapsportal.com/))
 
-6. Ask for firebase-credentials.json or create your own Firebase credential file (see [Firebase Docs](https://firebase.google.com/docs/cloud-messaging/android/client))
+6. In the .env file you will see the variable `WOOPORTAL_CAPTCHA_SECRET`. Ask for `WOOPORTAL_CAPTCHA_SECRET` or create your own hCaptcha secret (see [hCaptcha docs](https://docs.hcaptcha.com))
 
-7. Copy `firebase-credentials.json` to server:
+7. Ask for firebase-credentials.json or create your own Firebase credential file (see [Firebase Docs](https://firebase.google.com/docs/cloud-messaging/android/client))
+
+8. Copy `firebase-credentials.json` to server:
 
 ```
 cp  /path/to/your/firebase-credentials.json server/src/main/resources/credentials/firebase-credentials.json
 ```
 
-7. Copy media files to server storage
+9. Copy media files to server storage
 
 ```
 mkdir server/.storage
@@ -52,15 +54,15 @@ mkdir server/.storage
 cp -a media/. server/.storage
 ```
 
-8. In order to have a local db running, ask for SQL dump and place it into `/db` 
+10. In order to have a local db running, ask for SQL dump and place it into `/db` 
 
-10. Build the stack:
+11. Build the stack:
 
 ```
 docker compose build --no-cache
 ```
 
-11. Run the application:
+12. Run the application:
 
 ```
 docker compose up
@@ -114,12 +116,3 @@ During the development there might be changes in existing changelog files. There
 ```
 docker compose down -v
 ```
-
-## Migration Plan
-
-# Post deployment
-- Add favicon
-- Add color palette
-- Add logo image
-- Add Landing page
-- Add Apps entries
