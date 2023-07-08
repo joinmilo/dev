@@ -64,6 +64,19 @@ services:
       - "8014:1025"
     stop_signal: SIGKILL
 
+  translation-api:
+    container_name: wooportal.translation-api
+    image: easynmt/api:2.0-cpu
+    networks: [default]
+    ports: [8015:80]
+    stop_signal: SIGKILL
+    restart: unless-stopped
+    volumes:
+      - wooportal-translation-api:/cache
+
+
 volumes:
   wooportal-db:
+    driver: local
+  wooportal-translation-api:
     driver: local
