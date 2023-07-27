@@ -73,6 +73,12 @@ services:
     restart: unless-stopped
     volumes:
       - wooportal-translation-api:/cache
+    environment:
+      - EASYNMT_MODEL=m2m_100_418M
+      - MAX_WORKERS_BACKEND=2
+      - MAX_WORKERS_FRONTEND=4
+      - EASYNMT_BATCH_SIZE=32
+      - TIMEOUT=360
 
 
 volumes:
