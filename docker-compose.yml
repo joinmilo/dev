@@ -40,6 +40,8 @@ services:
       - WOOPORTAL_PORTAL_NAME=Wooportal
       - WOOPORTAL_PUSH_SECRET=file:/data/credentials/firebase-credentials.json
       - WOOPORTAL_STORAGE_LOCATION=/data/media
+      - WOOPORTAL_TRANSLATIONS_HOST=translation-api
+      - WOOPORTAL_TRANSLATIONS_PORT=80
 
   server-db:
     container_name: wooportal.db
