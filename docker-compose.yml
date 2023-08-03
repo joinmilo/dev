@@ -30,7 +30,7 @@ services:
       - WOOPORTAL_DB_PASS=wooportal
       - WOOPORTAL_DB_PORT=3306
       - WOOPORTAL_DB_USER=root
-      - WOOPORTAL_HOST=localhost:3000
+      - WOOPORTAL_HOST=http://localhost:8011
       - WOOPORTAL_MAIL_FROM=info@codeschluss.de
       - WOOPORTAL_MAIL_RCPT=error@codeschluss.de
       - WOOPORTAL_MAIL_HOST=mail
