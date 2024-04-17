@@ -1,4 +1,4 @@
-# wooportal.dev
+# Milo Dev
 
 All services started from a single repository
 
@@ -14,16 +14,16 @@ _Keep in mind this repository is for local development only and is not meant to 
 1. Clone the repository:
 
 ```
-git clone https://github.com/wooportal/dev --recursive wooportal.dev
+git clone https://github.com/joinmilo/dev --recursive milo.dev
 ```
 
 2. Shared folders:
-   We are using shared folders to enable live code reloading. Without this, Docker Compose will not start: - Windows/MacOS: Add the cloned `wooportal.dev` directory to Docker shared directories (Preferences -> Resources -> File sharing). - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced). - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
+   We are using shared folders to enable live code reloading. Without this, Docker Compose will not start: - Windows/MacOS: Add the cloned `milo.dev` directory to Docker shared directories (Preferences -> Resources -> File sharing). - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced). - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
 
 3. Go to the cloned directory:
 
 ```
-cd wooportal.dev
+cd milo.dev
 ```
 
 4. Copy the `.env` file from the example :
@@ -32,9 +32,9 @@ cd wooportal.dev
 cp .env.example .env
 ```
 
-5. In the .env file you will see the variable `WOOPORTAL_LOCATION_KEY`. Ask for `WOOPORTAL_LOCATION_KEY` or create your own Bing Maps Key (see [Bing Maps Integration](https://www.bingmapsportal.com/))
+5. In the .env file you will see the variable `MILO_LOCATION_KEY`. Ask for `MILO_LOCATION_KEY` or create your own Bing Maps Key (see [Bing Maps Integration](https://www.bingmapsportal.com/))
 
-6. In the .env file you will see the variable `WOOPORTAL_CAPTCHA_SECRET`. Ask for `WOOPORTAL_CAPTCHA_SECRET` or create your own hCaptcha secret (see [hCaptcha docs](https://docs.hcaptcha.com))
+6. In the .env file you will see the variable `MILO_CAPTCHA_SECRET`. Ask for `MILO_CAPTCHA_SECRET` or create your own hCaptcha secret (see [hCaptcha docs](https://docs.hcaptcha.com))
 
 7. Ask for firebase-credentials.json or create your own Firebase credential file (see [Firebase Docs](https://firebase.google.com/docs/cloud-messaging/android/client))
 
