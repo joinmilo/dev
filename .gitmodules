@@ -1,9 +1,9 @@
 [submodule "server"]
 	path = server
-	url = https://github.com/wooportal/server-next
+	url = https://github.com/joinmilo/server
 [submodule "specs"]
 	path = specs
-	url = https://github.com/wooportal/specs
+	url = https://github.com/joinmilo/specs
 [submodule "client"]
 	path = client
-	url = https://github.com/wooportal/client-next
+	url = https://github.com/joinmilo/client

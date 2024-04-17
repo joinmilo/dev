@@ -3,7 +3,7 @@ version: "3"
 services:
 
   client:
-    container_name: wooportal.client
+    container_name: milo.client
     build:
       context: ./client
       dockerfile: Dockerfile_dev
@@ -14,7 +14,7 @@ services:
       - ./client/:/app
 
   server:
-    container_name: wooportal.server
+    container_name: milo.server
     build:
       context: ./server
     networks: [default]
@@ -25,40 +25,40 @@ services:
       - ./server/src/main/resources/credentials:/data/credentials
     environment:
       - SPRING_PROFILES_ACTIVE=development
-      - WOOPORTAL_DB_HOST=server-db
-      - WOOPORTAL_DB_NAME=wooportal
-      - WOOPORTAL_DB_PASS=wooportal
-      - WOOPORTAL_DB_PORT=3306
-      - WOOPORTAL_DB_USER=root
-      - WOOPORTAL_HOST=http://localhost:8011
-      - WOOPORTAL_MAIL_FROM=info@codeschluss.de
-      - WOOPORTAL_MAIL_RCPT=error@codeschluss.de
-      - WOOPORTAL_MAIL_HOST=mail
-      - WOOPORTAL_MAIL_PORT=1025
-      - WOOPORTAL_MAIL_USER=
-      - WOOPORTAL_MAIL_PASS=
-      - WOOPORTAL_PORTAL_NAME=Wooportal
-      - WOOPORTAL_PUSH_SECRET=file:/data/credentials/firebase-credentials.json
-      - WOOPORTAL_STORAGE_LOCATION=/data/media
-      - WOOPORTAL_TRANSLATIONS_HOST=translation-api
-      - WOOPORTAL_TRANSLATIONS_PORT=80
+      - MILO_DB_HOST=server-db
+      - MILO_DB_NAME=milo
+      - MILO_DB_PASS=milo
+      - MILO_DB_PORT=3306
+      - MILO_DB_USER=root
+      - MILO_HOST=http://localhost:8011
+      - MILO_MAIL_FROM=info@codeschluss.de
+      - MILO_MAIL_RCPT=error@codeschluss.de
+      - MILO_MAIL_HOST=mail
+      - MILO_MAIL_PORT=1025
+      - MILO_MAIL_USER=
+      - MILO_MAIL_PASS=
+      - MILO_PORTAL_NAME=Milo
+      - MILO_PUSH_SECRET=file:/data/credentials/firebase-credentials.json
+      - MILO_STORAGE_LOCATION=/data/media
+      - MILO_TRANSLATIONS_HOST=translation-api
+      - MILO_TRANSLATIONS_PORT=80
 
   server-db:
-    container_name: wooportal.db
+    container_name: milo.db
     image: mysql:5
     networks: [default]
     ports: [8012:3306]
     stop_signal: SIGKILL
     restart: unless-stopped
     volumes:
-      - wooportal-db:/var/lib/mysql
+      - milo-db:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d
     environment:
-      - MYSQL_ROOT_PASSWORD=wooportal
-      - MYSQL_DATABASE=wooportal
+      - MYSQL_ROOT_PASSWORD=milo
+      - MYSQL_DATABASE=milo
 
   mail:
-    container_name: wooportal.mail
+    container_name: milo.mail
     image: maildev/maildev
     networks: [default]
     ports:
@@ -67,14 +67,14 @@ services:
     stop_signal: SIGKILL
 
   translation-api:
-    container_name: wooportal.translation-api
+    container_name: milo.translation-api
     image: easynmt/api:2.0-cpu
     networks: [default]
     ports: [8015:80]
     stop_signal: SIGKILL
     restart: unless-stopped
     volumes:
-      - wooportal-translation-api:/cache
+      - milo-translation-api:/cache
     environment:
       - EASYNMT_MODEL=m2m_100_418M
       - MAX_WORKERS_BACKEND=2
@@ -84,7 +84,7 @@ services:
 
 
 volumes:
-  wooportal-db:
+  milo-db:
     driver: local
-  wooportal-translation-api:
+  milo-translation-api:
     driver: local
